@@ -1,0 +1,30 @@
+t = int(input())
+
+for x in range(t):
+    costA, costB, mural = input().split()
+    costA = int(costA)
+    costB = int(costB)
+    for char in mural:
+        if char in "?":
+            mural = mural.replace(char,'')
+    costTotal = 0
+    letterCount = 0
+    letterLimit = len(mural)-1
+    for i in mural:
+        if len(mural) > 1:
+            if letterCount == letterLimit:
+                break
+            else:
+                current = mural[letterCount]
+                next = mural[letterCount+1]
+                letterCount += 1
+                if current == next:
+                    continue
+                else:
+                    if current == 'C':
+                        costTotal = costTotal + costA
+                    else:
+                        costTotal = costTotal + costB
+        else:
+            costTotal = 0
+    print('Case #' + str(x+1) + ': ' + str(costTotal))
